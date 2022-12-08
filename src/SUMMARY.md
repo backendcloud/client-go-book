@@ -11,4 +11,5 @@
 - [附1：限流器](./SUMMARY.md)
   - [Golang 标准库限流器](./rate_1.md)
   - [beefsack个人的开源 限流器](./rate_2.md)
+  - [uber 开源限流器](./rate_3.md)
   
