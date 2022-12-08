@@ -1,6 +1,6 @@
 
 
-> https://github.com/uber-go/ratelimit
+> https://github.com/golang/time
 
 ![](2022-12-07-17-35-30.png)
 
