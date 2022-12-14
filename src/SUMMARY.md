@@ -7,9 +7,15 @@
   - [ClientSet客户端 和 DynamicClient客户端](./chapter_4.md)
   - [informer机制中的本地存储indexer](./chapter_5.md)
   - [DeltaFIFO](./chapter_6.md)
+  - [workerqueue之普通队列Queue](./chapter_7.md)
+  - [workerqueue之延时队列DelayingQueue](./chapter_8.md)
   
 - [附1：限流器](./SUMMARY.md)
   - [Golang 标准库限流器](./rate_1.md)
   - [beefsack个人的开源 限流器](./rate_2.md)
   - [uber 开源限流器](./rate_3.md)
   
+- [附2：Golang标准库](./SUMMARY.md)
+  - [双向链表list](./container-list.md)
+  - [ring](./container-ring.md)
+  - [heap](./container-heap.md)
