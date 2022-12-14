@@ -19,3 +19,7 @@
   - [双向链表list](./container-list.md)
   - [ring](./container-ring.md)
   - [heap](./container-heap.md)
+
+- [附3：Golang标准库time包](./SUMMARY.md)
+  - [程序员需要相信的关于时间的谎言 时间可以倒流](./time-1.md)
+  
