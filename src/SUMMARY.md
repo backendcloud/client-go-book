@@ -9,6 +9,7 @@
   - [DeltaFIFO](./chapter_6.md)
   - [workerqueue之普通队列Queue](./chapter_7.md)
   - [workerqueue之延时队列DelayingQueue](./chapter_8.md)
+  - [workerqueue之RateLimitingQueue](./chapter_9.md)
   
 - [附1：限流器](./SUMMARY.md)
   - [Golang 标准库限流器](./rate_1.md)
