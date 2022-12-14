@@ -15,7 +15,7 @@
   - [beefsack个人的开源 限流器](./rate_2.md)
   - [uber 开源限流器](./rate_3.md)
   
-- [附2：Golang标准库](./SUMMARY.md)
+- [附2：client-go用到的相关Golang标准库](./SUMMARY.md)
   - [双向链表list](./container-list.md)
   - [ring](./container-ring.md)
   - [heap](./container-heap.md)
