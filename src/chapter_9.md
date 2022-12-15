@@ -1,6 +1,8 @@
+
+
 workerqueue的限速队列RateLimitingQueue搞明白三件事就可以了。
 1. 代码结构
-2. 5种限速RateLimitingQueue(限速队列)
+2. 5种RateLimitingQueue(限速队列)
 3. Kubernetes主要用了上述5种限速队列的哪几种
 
 # 代码结构
@@ -247,7 +249,7 @@ func (w WithMaxWaitRateLimiter) NumRequeues(item interface{}) int {
 
 # Kubernetes主要用了上述5种限速队列的哪几种
 
-![](2022-12-15-01-47-18.png)
+![](2022-12-15-16-53-36.png)
 
 可以看出基本就用了两种限速队列BucketRateLimiter和ItemExponentialFailureRateLimiter，且以BucketRateLimiter为主。
 

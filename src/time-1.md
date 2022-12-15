@@ -191,3 +191,60 @@ func (t Time) Sub(u Time) Duration {
 	}
 }
 ```
+
+增加秒数的addSec方法，比较时间先后的After，Before，Equal都分 2157前还是后。
+
+```go
+func (t *Time) addSec(d int64) {
+	if t.wall&hasMonotonic != 0 {
+		sec := int64(t.wall << 1 >> (nsecShift + 1))
+		dsec := sec + d
+		if 0 <= dsec && dsec <= 1<<33-1 {
+			t.wall = t.wall&nsecMask | uint64(dsec)<<nsecShift | hasMonotonic
+			return
+		}
+		// Wall second now out of range for packed field.
+		// Move to ext.
+		t.stripMono()
+	}
+
+	// Check if the sum of t.ext and d overflows and handle it properly.
+	sum := t.ext + d
+	if (sum > t.ext) == (d > 0) {
+		t.ext = sum
+	} else if d > 0 {
+		t.ext = 1<<63 - 1
+	} else {
+		t.ext = -(1<<63 - 1)
+	}
+}
+
+func (t Time) After(u Time) bool {
+	if t.wall&u.wall&hasMonotonic != 0 {
+		return t.ext > u.ext
+	}
+	ts := t.sec()
+	us := u.sec()
+	return ts > us || ts == us && t.nsec() > u.nsec()
+}
+
+func (t Time) Before(u Time) bool {
+	if t.wall&u.wall&hasMonotonic != 0 {
+		return t.ext < u.ext
+	}
+	ts := t.sec()
+	us := u.sec()
+	return ts < us || ts == us && t.nsec() < u.nsec()
+}
+
+func (t Time) Equal(u Time) bool {
+	if t.wall&u.wall&hasMonotonic != 0 {
+		return t.ext == u.ext
+	}
+	return t.sec() == u.sec() && t.nsec() == u.nsec()
+}
+```
+
+其他time相关的具体的时间相关的函数（分布在time.go local.go zoneinfo.go）很多，都比较简单，不一一分析了。
+
+待以后再分析timer和ticker相关的代码（实际上timer和ticker相关的源码已经不属于time包了，在runtime包里）。

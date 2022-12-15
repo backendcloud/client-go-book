@@ -9,7 +9,7 @@
   - [DeltaFIFO](./chapter_6.md)
   - [workerqueue之普通队列Queue](./chapter_7.md)
   - [workerqueue之延时队列DelayingQueue](./chapter_8.md)
-  - [workerqueue之RateLimitingQueue](./chapter_9.md)
+  - [workerqueue之限速队列RateLimitingQueue](./chapter_9.md)
   
 - [附1：限流器](./SUMMARY.md)
   - [Golang 标准库限流器](./rate_1.md)
@@ -23,4 +23,5 @@
 
 - [附3：Golang标准库time包](./SUMMARY.md)
   - [程序员需要相信的关于时间的谎言 时间可以倒流](./time-1.md)
-  
+
+TODO: timer和ticker GMP和调度 时间轮
