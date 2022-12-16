@@ -10,6 +10,7 @@
   - [workerqueue之普通队列Queue](./chapter_7.md)
   - [workerqueue之延时队列DelayingQueue](./chapter_8.md)
   - [workerqueue之限速队列RateLimitingQueue](./chapter_9.md)
+  - [使用client-go实现一个简单controller的例子](./chapter_10.md)
   
 - [附1：限流器](./SUMMARY.md)
   - [Golang 标准库限流器](./rate_1.md)
@@ -23,5 +24,6 @@
 
 - [附3：Golang标准库time包](./SUMMARY.md)
   - [程序员需要相信的关于时间的谎言 时间可以倒流](./time-1.md)
+  - [timer和ticker](./time-2.md)
 
-TODO: timer和ticker GMP和调度 时间轮
+TODO: GMP和调度触发timer 时间轮 leader election

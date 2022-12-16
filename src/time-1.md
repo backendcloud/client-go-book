@@ -1,3 +1,5 @@
+
+
 # 问题背景：程序员需要相信的关于时间的谎言 时间可以倒流
 
 > golang社区有关于此问题的讨论 https://github.com/golang/go/issues/12914
@@ -16,6 +18,8 @@
 
 由于已经存在两个没有闰秒的时间，国际原子时（TAI）和全球定位系统（GPS）时间。例如，电脑可以使用这些时间，并根据需要转换为UTC或本地民用时间进行输出。2022年11月，在第27届国际计量大会上，投票决定到2035年取消闰秒。
 
+下面回到 Golang 上来。
+
 Now方法返回当前的时间，其中用到了runtime中的now()函数，该函数对应的runtime中的time_now方法。而walltime 和 nanotime 是以汇编实现的。汇编中用 vdso call 来获取到当前的时间信息。
 
 ```go
@@ -29,6 +33,8 @@ func Now() Time {
 	return Time{hasMonotonic | uint64(sec)<<nsecShift | uint64(nsec), mono, Local}
 }
 ```
+
+> hasMonotonic 表示是否有单调递增的时钟。
 
 ```go
 //go:linkname time_now time.now
@@ -143,6 +149,8 @@ const (
 	}
 ```
 
+> 返回的Time的第一个参数是wall，第二个参数是ext
+
 ```go
 type Time struct {
 	wall uint64
@@ -158,6 +166,8 @@ type Time struct {
 ```go
 	return Time{hasMonotonic | uint64(sec)<<nsecShift | uint64(nsec), mono, Local}
 ```
+
+> 返回的Time的第一个参数是wall，第二个参数是ext
 
 ![](2022-12-14-17-31-57.png)
 
@@ -193,6 +203,8 @@ func (t Time) Sub(u Time) Duration {
 ```
 
 增加秒数的addSec方法，比较时间先后的After，Before，Equal都分 2157前还是后。
+
+> 若程序运行在2157年之前，且用的golang版本是1.9之后的版本，那可以放心，不会引入因为闰秒导致的时间倒流的bug。
 
 ```go
 func (t *Time) addSec(d int64) {
